@@ -1,0 +1,276 @@
+.dashboard {
+  overflow-y: auto;
+  margin-right: 2rem;
+  padding-bottom: 2rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > .bar {
+    height: 4rem;
+    @include flex(row, space-between);
+    padding-top: 1rem;
+
+    > input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+    }
+  }
+
+  > .widget-container {
+    @include flex(row, space-between, stretch, 2rem);
+    padding: 2rem 0;
+    flex-wrap: wrap;
+
+    > .widget {
+      padding: 20px;
+      border-radius: 5px;
+      background-color: rgb(248, 248, 248);
+      box-shadow: 0 0 0.5px;
+      @include flex(row, unset);
+
+      > .icon {
+        height: 50px;
+        width: 50px;
+        > * {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      > div {
+        > p {
+          color: gray;
+          font-size: smaller;
+        }
+
+        > h4 {
+          font-size: 20px;
+        }
+
+        > div {
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  > .graph-container {
+    @include flex(row, unset, unset, 4rem);
+    padding: 0 0 2rem 0;
+    flex-wrap: wrap;
+
+    > div {
+      background-color: rgb(248, 248, 248);
+      border-radius: 10px;
+    }
+
+    > .bar-chart {
+      flex: 1;
+      padding: 1rem;
+      min-width: 500px;
+
+      .header {
+        @include flex(row, space-between);
+
+        > .left-section > p {
+          color: gray;
+        }
+
+        select {
+          padding: 0.2rem;
+          border-radius: 8px;
+          background-color: rgb(83, 66, 229, 0.1);
+          color: gray;
+          border: none;
+        }
+      }
+
+      > .bar-container {
+        @include flex(row, space-between, flex-end, 0.5rem);
+        height: 250px;
+
+        > .bar {
+          width: 45px;
+          background-color: #5342e5;
+          border-radius: 10px;
+          opacity: 0.1;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #1100a8;
+            opacity: 0.2;
+          }
+        }
+
+        .bar.active {
+          background-color: #412cff;
+          opacity: 1;
+        }
+      }
+
+      .labels {
+        @include flex(row, space-around);
+        font-weight: 400;
+        margin-top: 0.6rem;
+      }
+    }
+
+    > .pie-chart {
+      width: 100%;
+      max-width: 20rem;
+      padding: 1rem;
+      position: relative;
+      min-height: 20rem;
+
+      .pie-container {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background-color: white;
+        position: absolute;
+        bottom: 2rem;
+        left: 15%;
+        @include flex();
+
+        > p {
+          z-index: 1;
+          width: 60px;
+          text-align: center;
+          line-height: 15px;
+          font-weight: 700;
+          font-size: 20px;
+
+          > span {
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+
+        .thin {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          position: absolute;
+          display: grid;
+          place-items: center;
+          background: conic-gradient(#bbbbbb 156deg, rgba(255, 255, 255, 0) 0);
+          rotate: 204deg;
+          &::before {
+            content: "";
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+
+        .medium {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          position: absolute;
+          display: grid;
+          place-items: center;
+          background: conic-gradient(#5b4ee6 150deg, rgb(255, 255, 255, 0) 0);
+          rotate: 59deg;
+          &::before {
+            content: "";
+            width: 110px;
+            height: 110px;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+
+        .fat {
+          width: 170px;
+          height: 170px;
+          border-radius: 50%;
+          position: absolute;
+          display: grid;
+          place-items: center;
+          background: conic-gradient(#9700ab 60deg, rgba(255, 255, 255, 0) 0);
+          rotate: 360deg;
+          &::before {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  > .table-container {
+    background-color: rgb(248, 248, 248);
+    border-radius: 10px;
+    padding: 1rem;
+
+    .header {
+      @include flex(row, space-between);
+      margin-bottom: 1rem;
+
+      .right-section {
+        @include flex(row, unset, unset, 1rem);
+
+        input {
+          padding: 5px;
+          border-radius: 5px;
+          border: none;
+          background-color: rgba(211, 211, 211, 0.171);
+        }
+
+        select {
+          border: none;
+          color: gray;
+          background-color: rgba(211, 211, 211, 0.171);
+        }
+      }
+    }
+
+    .table {
+      @include flex(column, unset, unset, 1rem);
+
+      tr {
+        display: grid;
+        grid-template-columns: 6fr 1fr 1fr 1fr;
+      }
+
+      td {
+        @include flex(row, unset, unset);
+
+        img {
+          height: 35px;
+          width: auto;
+          object-fit: contain;
+          border-radius: 15%;
+        }
+      }
+
+      .table-head {
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 0.5rem;
+
+        th {
+          text-align: start;
+          font-size: 14px;
+          font-weight: 400;
+          color: gray;
+        }
+      }
+
+      .table-row {
+        p {
+          font-size: 12px;
+          color: gray;
+        }
+      }
+    }
+  }
+}
